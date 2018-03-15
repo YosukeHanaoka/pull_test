@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}
+ダッシュボード
+{% endblock title %}
+
+{% block extrahead %}
+<style>
+body {
+  font-size: .875rem;
+}
+.cs-sidebar {
+  height: calc(100vh - 56px);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+.cs-sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+.cs-sidebar .nav-link.active {
+    color: #007bff;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="p-3">
+      <h3 class="page-header">ダッシュボード</h3>
+
+      <div class="alert alert-danger" role="alert">danger</div>
+      <div class="alert alert-warning" role="alert">warning</div>
+
+      <ul class="nav nav-tabs">
+        <li class="nav-item"><a href="#content_1" class="nav-link active" data-toggle="tab">Content1</a></li>
+        <li class="nav-item"><a href="#content_2" class="nav-link" data-toggle="tab">Content2</a></li>
+        <li class="nav-item"><a href="#content_3" class="nav-link" data-toggle="tab">Content3</a></li>
+        <li class="nav-item"><a href="#content_4" class="nav-link" data-toggle="tab">Content4</a></li>
+      </ul>
+
+      <!-- タブ内容 -->
+      <div class="tab-content">
+      	<div class="tab-pane active" id="content_1">
+      		<p>タブＡの内容</p>
+
+          {% if all_salary_list %}
+          <table class="table table-hover table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th>Gross Income</th>
+                <th>Basic</th>
+                <th>Overtime</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for salary in all_salary_list %}
+            <tr>
+                <td>{{ salary.gross_income }}</td>
+                <td>{{ salary.basic }}</td>
+                <td>{{ salary.overtime }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+              <p>No salary data.</p>
+          {% endif %}
+
+      	</div>
+      	<div class="tab-pane" id="content_2">
+      		<p>タブＢの内容</p>
+      	</div>
+      	<div class="tab-pane" id="content_3">
+      		<p>タブＣの内容</p>
+      	</div>
+      	<div class="tab-pane" id="content_4">
+      		<p>タブＤの内容</p>
+      	</div>
+      </div>
+    </div>
+
+{% endblock %}
